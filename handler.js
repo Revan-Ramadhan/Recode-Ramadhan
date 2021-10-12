@@ -1610,10 +1610,11 @@ module.exports = handle = (client, Client) => {
                     client.sendMessage(from, fs.readFileSync(`./sticker/attp.webp`), sticker, {quoted: msg})
                     limitAdd(sender, limit)
                     fs.unlinkSync(`./sticker/attp.webp`)    
-                })        break  
+                })         
             }
             }
-        })
+        })  break
+
     } catch (e) {
         console.log(e)
     }
