@@ -1597,7 +1597,21 @@ module.exports = handle = (client, Client) => {
                     if(!datas.botIsAdmin) return datas.reply(mess.botAdmin)
                     client.groupSettingChange(from, GroupSettingChange.messageSend, true)
                     datas.reply(`Group telah ditutup oleh admin @${datas.sender.split('@')[0]}`)
+
 				    break
+                             break
+            case prefix+'attp':{
+                if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
+                if (args.length < 2) return reply(`Kirim perintah *${prefix}attp* teks`)
+                let ane = await getBuffer(`https://api.xteam.xyz/attp?file&text=${encodeURIComponent(q)}`)
+                fs.writeFileSync('./sticker/attp.webp', ane)
+                exec(`webpmux -set exif ./sticker/data.exif ./sticker/attp.webp -o ./sticker/attp.webp`, async (error) => {
+                    if (error) return reply(mess.error.api)
+                    client.sendMessage(from, fs.readFileSync(`./sticker/attp.webp`), sticker, {quoted: msg})
+                    limitAdd(sender, limit)
+                    fs.unlinkSync(`./sticker/attp.webp`)    
+                })        break  
+            }
             }
         })
     } catch (e) {
