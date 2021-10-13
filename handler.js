@@ -1599,8 +1599,8 @@ module.exports = handle = (client, Client) => {
                     datas.reply(`Group telah ditutup oleh admin @${datas.sender.split('@')[0]}`)
 
 				    break
-                             break
-            case prefix+'attp':{
+                             
+                            case prefix+'attp':{
                 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
                 if (args.length < 2) return reply(`Kirim perintah *${prefix}attp* teks`)
                 let ane = await getBuffer(`https://api.xteam.xyz/attp?file&text=${encodeURIComponent(q)}`)
